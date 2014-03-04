@@ -1,0 +1,11 @@
+To delete:
+rm -rf letters/
+
+To copy contents of dir:
+cp -R * desination_path
+
+To rename a dir:
+mv /home/user/oldname /home/user/newname
+
+To create a new Meteor project in an existing directory:
+Rename the original directory, run meteor create, merge the two directories, then run git add .; git commit -a;
