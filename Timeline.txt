@@ -9,3 +9,14 @@ mv /home/user/oldname /home/user/newname
 
 To create a new Meteor project in an existing directory:
 Rename the original directory, run meteor create, merge the two directories, then run git add .; git commit -a;
+
+Add a .gitignore under .meteor, having local
+
+mrt add http
+
+google: d3 mapping
+
+http://bost.ocks.org/mike/map/
+http://www.wired.com/wiredscience/2013/12/make-better-maps-with-d3/
+https://www.dashingd3js.com/
+http://www.naturalearthdata.com/downloads/
