@@ -8,3 +8,6 @@ autopublish
 insecure
 preserve-inputs
 http
+bootstrap-3
+iron-router
+leaflet
