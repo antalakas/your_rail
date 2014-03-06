@@ -8,9 +8,12 @@ var initialize = function(element, centroid, zoom, features) {
         touchZoom: false
     }).setView(new L.LatLng(centroid[0], centroid[1]), zoom);
 
+    L.Icon.Default.imagePath = 'packages/leaflet/images'
+  
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {opacity: .5}).addTo(map);
     //L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {opacity: .5}).addTo(map);
-
+    //L.tileLayer.provider('Stamen.Watercolor').addTo(map)
+    
     map.attributionControl.setPrefix('');
 
     var attribution = new L.Control.Attribution();
