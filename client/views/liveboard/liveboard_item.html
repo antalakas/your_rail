@@ -2,11 +2,15 @@
 
     <div class="post">
         <div class="post-content">
-            <h3>{{direction}}
+            <h3>To: <a href="{{pathFor 'stationPage'}}">{{direction}}</a></h3>
                 <p/>
-                <span>{{iso8601}}</span></h3>
+                <span>{{iso8601}}</span>
                 <p/>
-                <span>{{vehicle}}</span></h3>
+                <span>Delay: {{delay}}</span>
+                <p/>
+                <span>Platform: {{platform.name}}</span>
+                <p/>
+                <span>Vehicle: {{vehicle}}</span>
         </div>
     </div>
 
