@@ -21,5 +21,10 @@
       <span>{{departures}}</span>
     </div>
   </div>
+    <div id="liveboard" class="posts">
+        {{#each liveboardEntries}}
+        {{> liveboardItem}}
+        {{/each}}
+    </div>
   {{/if}}
 </template>

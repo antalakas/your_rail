@@ -73,7 +73,7 @@ Template.map.rendered = function () {
     var stations = Stations.find().fetch();
     
     for (I=0; I<stations.length; ++I) {
-      console.log( stations[I].name );
+      //console.log( stations[I].name );
       var stationMarker = L.marker([stations[I].latitude, stations[I].longitude]).bindPopup(stations[I].name);
       stationsLayer.addLayer(stationMarker);
     }
@@ -85,7 +85,7 @@ Template.map.rendered = function () {
     
     var station = Session.get('currentStation');
     console.log( station.name );
-    singleStationMarker = L.marker([station.latitude, station.longitude]).bindPopup(station.name).openPopup();
+    var singleStationMarker = L.marker([station.latitude, station.longitude]).bindPopup(station.name);
     stationsLayer.addLayer(singleStationMarker);
     
     stationsLayer.addTo(map);

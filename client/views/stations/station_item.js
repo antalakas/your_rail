@@ -3,9 +3,12 @@ Template.stationItem.helpers({
     if (Session.get('currentStationItemContext') == 'stationsList') {
       return true;
     }
-    
+
     Session.set('currentStation', this);
     return false;
+  },
+  liveboardEntries: function() {
+      return LiveBoardCollection.find();
   }
 });
 
@@ -44,13 +47,16 @@ Template.stationItem.created = function() {
                         console.log('Status code = 200!');
                         console.log('Printing one for testing...');
                         var liveboard_data = JSON.parse(result.content)
-                        console.log(liveboard_data);
-                        /*console.log(station_data.Stations[0]);
-                        console.log('Adding all stations to Stations collection');
-                        for (I = 0; I < station_data.Stations.length; ++I) {
-                          Stations.insert(station_data.Stations[I]);
+                        console.log(liveboard_data.Liveboard.departures[0]);
+
+                        console.log('Clearing all liveboard entries in Liveboard collection');
+                        LiveBoardCollection.remove({});
+
+                        console.log('Adding all liveboard entries to Liveboard collection');
+                        for (I = 0; I < liveboard_data.Liveboard.departures.length; ++I) {
+                            LiveBoardCollection.insert(liveboard_data.Liveboard.departures[I]);
                         }
-                        console.log(station_data.Stations.length.toString() + ' Stations added');*/
+                        console.log(liveboard_data.Liveboard.departures.length.toString() + ' liveboard entries added');
                       }
                     } 
                   });
