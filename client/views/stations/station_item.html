@@ -1,10 +1,23 @@
 <template name="stationItem">
+  {{#if IsStationList}}
   <div class="post">
     <div class="post-content">
-      <h3>{{name}} 
+      <h3>{{name}}
         <p/>
         <span>{{id}}</span></h3>
     </div>
-    <a href="{{pathFor 'stationPage'}}" class="discuss btn">Station Details</a>
+      <a href="{{pathFor 'stationPage'}}" class="discuss btn">Station Details</a>
   </div>
+  {{else}}
+  <div class="post">
+    <div class="post-content">
+      <h3>{{name}} <span>{{id}}</span></h3>
+    </div>
+  </div>
+    <div class="post">
+    <div class="post-content">
+      <h3>Liveboard</h3>
+    </div>
+  </div>
+  {{/if}}
 </template>
