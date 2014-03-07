@@ -29,3 +29,6 @@ https://github.com/openshift-quickstart/openshift-meteorjs-quickstart#basic-setu
 
 Meteor.js: How to set a div height dynamically via Javascript
 http://stackoverflow.com/questions/19920428/meteor-js-how-to-set-a-div-height-dynamically-via-javascript
+
+Javascript current date/time
+http://stackoverflow.com/questions/10211145/getting-current-date-and-time-in-javascript
