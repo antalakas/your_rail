@@ -4,7 +4,11 @@ Template.stationsList.helpers({
     var stationsCursor = Stations.find()
     var stations = stationsCursor.fetch();
 
+    // Clear local collection
+    StationsLocal.remove({});
+
     for (I=0; I<stations.length; ++I) {
+        stations[I].isCurrent = false;
         StationsLocal.insert(stations[I]);
     }
 

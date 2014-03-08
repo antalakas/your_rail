@@ -18,7 +18,11 @@ Template.stationItem.created = function() {
       return;
     }
 
+  // Clear local collection
   StationsLocal.remove({});
+
+  this.data.isCurrent = true;
+
   StationsLocal.insert(this.data);
 
   console.log("stationItem.created");

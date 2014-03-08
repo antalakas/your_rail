@@ -31,8 +31,8 @@ var initialize = function(element, centroid, zoom, features) {
   
   L.Icon.Default.imagePath = 'packages/leaflet/images'
   
-  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {opacity: .5}).addTo(map);
-  //L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {opacity: .5}).addTo(map);
+  //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {opacity: .5}).addTo(map);
+  L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {opacity: .5}).addTo(map);
   //L.tileLayer.provider('Stamen.Watercolor').addTo(map)
   
   map.attributionControl.setPrefix('');
@@ -45,7 +45,31 @@ var initialize = function(element, centroid, zoom, features) {
   map.addControl(attribution);
 }
 
+var createIcon = function(station) {
+    var className = 'leaflet-div-icon ';
+    className += station.isCurrent ? 'private' : 'public';
+    return L.divIcon({
+        iconSize: [30, 30],
+        html: '<b>' + 'S' + '</b>',
+        className: className
+    });
+}
+
 var addMarker = function(station) {
+
+    var stationMarker = new L.Marker([station.latitude, station.longitude], {
+        _id: station._id,
+        icon: createIcon(station)
+    }).on('click', function(e) {
+            Session.set("selected", e.target.options._id);
+        });
+
+    stationMarker.bindPopup(station.name);
+    map.addLayer(stationMarker);
+    markers[station._id] = stationMarker;
+    //markers[marker.options._id] = marker;
+
+    /*
     var stationMarker = L.marker([station.latitude, station.longitude]);
 
     if (map.hasLayer(stationMarker))
@@ -54,6 +78,7 @@ var addMarker = function(station) {
     stationMarker.bindPopup(station.name);
     map.addLayer(stationMarker);
     markers[station._id] = stationMarker;
+    */
 }
 
 var removeMarker = function(_id) {
