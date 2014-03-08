@@ -1,5 +1,5 @@
 var map, markers = [ ];
-var stationsLayer;
+//var stationsLayer;
 
 /*
 Template.map.helpers({
@@ -45,8 +45,48 @@ var initialize = function(element, centroid, zoom, features) {
   map.addControl(attribution);
 }
 
+var addMarker = function(station) {
+    var stationMarker = L.marker([station.latitude, station.longitude]);
+
+    if (map.hasLayer(stationMarker))
+        return;
+
+    stationMarker.bindPopup(station.name);
+    map.addLayer(stationMarker);
+    markers[station._id] = stationMarker;
+}
+
+var removeMarker = function(_id) {
+    var marker = markers[_id];
+    if (map.hasLayer(marker)) {
+        map.removeLayer(marker);
+        delete markers[_id];
+    }
+}
+
 Template.map.created = function() {
-  
+
+    StationsLocal.find({}).observe({
+        added: function(station) {
+            console.log("added");
+            //var marker = new L.Marker(party.latlng, {
+            //    _id: party._id,
+            //    icon: createIcon(party)
+            //}).on('click', function(e) {
+            //        Session.set("selected", e.target.options._id);
+            //    });
+            addMarker(station);
+        },
+        changed: function(station) {
+            console.log("changed");
+            //var marker = markers[party._id];
+            //if (marker) marker.setIcon(createIcon(party));
+        },
+        removed: function(station) {
+            console.log("removed");
+            removeMarker(station._id);
+        }
+    });
 }
 
 Template.map.rendered = function () {
@@ -60,7 +100,8 @@ Template.map.rendered = function () {
   if (!map) {
     initialize($("#map_canvas")[0], [ 50.5333, 4.7667 ], 8);
   }
-  
+
+  /*
   if (!stationsLayer) {
     stationsLayer = L.layerGroup();
   }
@@ -90,7 +131,8 @@ Template.map.rendered = function () {
     
     stationsLayer.addTo(map);
   }
-  
+  */
+
   /*while ( stationsCursor.hasNext() ) {
         station = stationsCursor.next();
         console.log( station.name );

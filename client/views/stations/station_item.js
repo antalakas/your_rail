@@ -8,7 +8,7 @@ Template.stationItem.helpers({
     return false;
   },
   liveboardEntries: function() {
-      return LiveBoardCollection.find();
+      return LiveBoardLocal.find();
   }
 });
 
@@ -17,7 +17,10 @@ Template.stationItem.created = function() {
   if (Session.get('currentStationItemContext') == 'stationsList') {
       return;
     }
-  
+
+  StationsLocal.remove({});
+  StationsLocal.insert(this.data);
+
   console.log("stationItem.created");
   
   //https://data.irail.be/NMBS/Liveboard/Simonis/2014/03/07/16/36.json
@@ -50,11 +53,11 @@ Template.stationItem.created = function() {
                         console.log(liveboard_data.Liveboard.departures[0]);
 
                         console.log('Clearing all liveboard entries in Liveboard collection');
-                        LiveBoardCollection.remove({});
+                        LiveBoardLocal.remove({});
 
                         console.log('Adding all liveboard entries to Liveboard collection');
                         for (I = 0; I < liveboard_data.Liveboard.departures.length; ++I) {
-                            LiveBoardCollection.insert(liveboard_data.Liveboard.departures[I]);
+                            LiveBoardLocal.insert(liveboard_data.Liveboard.departures[I]);
                         }
                         console.log(liveboard_data.Liveboard.departures.length.toString() + ' liveboard entries added');
                       }
