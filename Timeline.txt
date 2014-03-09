@@ -32,3 +32,6 @@ http://stackoverflow.com/questions/19920428/meteor-js-how-to-set-a-div-height-dy
 
 Javascript current date/time
 http://stackoverflow.com/questions/10211145/getting-current-date-and-time-in-javascript
+
+How to execute helper function after DOM is ready in meteor
+http://stackoverflow.com/questions/15312812/how-to-execute-helper-function-after-dom-is-ready-in-meteor

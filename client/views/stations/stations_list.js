@@ -29,5 +29,4 @@ Template.stationsList.destroyed = function() {
 };
 
 Template.stationsList.rendered = function() {
-
 };
