@@ -29,18 +29,21 @@ Template.header.searchMessage = function(){
 Template.header.events({
     'submit form': function( event ){
 
+        event.preventDefault();
+        event.stopPropagation();
+      
         var stationName = $('#search_station').val().toString();
         var liveboard_station = Stations.findOne({'name' : stationName});
 
         if (liveboard_station == null) {
-            event.preventDefault();
-            event.stopPropagation();
             return false;
         }
 
         console.log(liveboard_station);
 
         Router.go('stationPage', {_id: liveboard_station._id});
+        //Session.set('currentStation', liveboard_station);
+        //renderLiveboard(liveboard_station);
     }
 });
 

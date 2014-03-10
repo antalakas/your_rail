@@ -4,7 +4,8 @@ Template.stationItem.helpers({
       return true;
     }
 
-    Session.set('currentStation', this);
+    //Session.set('currentStation', this);
+    renderLiveboard(this);
     return false;
   },
   liveboardEntries: function() {
@@ -12,8 +13,12 @@ Template.stationItem.helpers({
   }
 });
 
-Template.stationItem.created = function() {
-  
+/*executeOnCurrentStationChange = function() {
+  var currentStation = Session.get('currentStation');
+  renderLiveboard(currentStation);
+}*/
+
+renderLiveboard = function(stationForLiveboard) {
   if (Session.get('currentStationItemContext') == 'stationsList') {
       return;
     }
@@ -21,9 +26,9 @@ Template.stationItem.created = function() {
   // Clear local collection
   StationsLocal.remove({});
 
-  this.data.isCurrent = true;
+  stationForLiveboard.isCurrent = true;
 
-  StationsLocal.insert(this.data);
+  StationsLocal.insert(stationForLiveboard);
 
   console.log("stationItem.created");
   
@@ -38,7 +43,7 @@ Template.stationItem.created = function() {
   var minutes = currentdate.getMinutes();
   
   var liveboardUrl = "https://data.irail.be/NMBS/Liveboard/" + 
-      this.data.name + "/" + 
+      stationForLiveboard.name + "/" + 
       year + "/" + month + "/" + day + "/" + 
       hour + "/" + minutes + ".json"
   
@@ -66,6 +71,12 @@ Template.stationItem.created = function() {
                         console.log(liveboard_data.Liveboard.departures.length.toString() + ' liveboard entries added');
                       }
                     } 
-                  });
+                  });  
+}
+
+
+Template.stationItem.created = function() {
   
+  //renderLiveboard(this.data);
+ 
 };
